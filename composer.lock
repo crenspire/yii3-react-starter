@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "fa3d1ec45c7de85982d90e1abd45a32a",
+    "content-hash": "24e9546d71b79e3932d95a18381be687",
     "packages": [
         {
             "name": "alexkart/curl-builder",
@@ -119,11 +119,17 @@
         },
         {
             "name": "crenspire/yii3-inertia",
-            "version": "dev-develop",
+            "version": "v1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/crenspire/yii3-inertia.git",
+                "reference": "9d7105125a6033aace3a2a3bc9b4b84b6bf95ad2"
+            },
             "dist": {
-                "type": "path",
-                "url": "/opt/personal/yii-packages/yii3-inertia",
-                "reference": "a549e0d6b3d651b108ca755244fb84e57487a85c"
+                "type": "zip",
+                "url": "https://api.github.com/repos/crenspire/yii3-inertia/zipball/9d7105125a6033aace3a2a3bc9b4b84b6bf95ad2",
+                "reference": "9d7105125a6033aace3a2a3bc9b4b84b6bf95ad2",
+                "shasum": ""
             },
             "require": {
                 "php": "^8.1",
@@ -145,18 +151,14 @@
             },
             "type": "library",
             "autoload": {
-                "psr-4": {
-                    "Crenspire\\Inertia\\": "src/"
-                },
                 "files": [
                     "src/Helpers.php"
-                ]
-            },
-            "autoload-dev": {
+                ],
                 "psr-4": {
-                    "Crenspire\\Inertia\\Tests\\": "tests/"
+                    "Crenspire\\Inertia\\": "src/"
                 }
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -168,18 +170,19 @@
             ],
             "description": "Inertia.js adapter for Yii3 framework",
             "keywords": [
+                "SPA",
                 "adapter",
                 "inertia",
                 "inertiajs",
                 "psr-15",
                 "psr-7",
-                "spa",
                 "yii3"
             ],
-            "transport-options": {
-                "symlink": true,
-                "relative": false
-            }
+            "support": {
+                "issues": "https://github.com/crenspire/yii3-inertia/issues",
+                "source": "https://github.com/crenspire/yii3-inertia/tree/v1.0.0"
+            },
+            "time": "2026-01-08T05:29:20+00:00"
         },
         {
             "name": "httpsoft/http-message",
@@ -14116,7 +14119,6 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "crenspire/yii3-inertia": 20,
         "roave/security-advisories": 20
     },
     "prefer-stable": false,

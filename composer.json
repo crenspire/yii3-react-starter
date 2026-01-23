@@ -35,7 +35,7 @@
     "require": {
         "php": "^8.2",
         "ext-filter": "*",
-        "crenspire/yii3-inertia": "@dev",
+        "crenspire/yii3-inertia": "^1.0",
         "httpsoft/http-message": "^1.1.6",
         "psr/container": "^2.0.2",
         "psr/http-factory": "^1.1",
@@ -104,14 +104,5 @@
             "codeception/c3": true,
             "composer/installers": true
         }
-    },
-    "repositories": [
-        {
-            "type": "path",
-            "url": "/opt/personal/yii-packages/yii3-inertia",
-            "options": {
-                "symlink": true
-            }
-        }
-    ]
+    }
 }
