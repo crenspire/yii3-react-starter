@@ -1,7 +1,7 @@
 {
-    "name": "yiisoft/app",
+    "name": "crenspire/yii3-react-starter",
     "type": "project",
-    "description": "Yii3 web application template",
+    "description": "Yii3 - Modern Starter Kit Using Inertia v2, React 19, ShadCN UI and Tailwind CSS 4+",
     "keywords": [
         "yii3",
         "app"
