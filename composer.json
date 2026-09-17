@@ -1,50 +1,47 @@
 {
     "name": "crenspire/yii3-react-starter",
     "type": "project",
-    "description": "Yii3 - Modern Starter Kit Using Inertia v2, React 19, ShadCN UI and Tailwind CSS 4+",
+    "description": "Yii3 starter kit with Inertia.js 3, React 19, shadcn/ui and Tailwind CSS 4",
     "keywords": [
         "yii3",
-        "app"
+        "inertia",
+        "react",
+        "tailwindcss",
+        "vite",
+        "starter-kit"
     ],
     "license": "BSD-3-Clause",
     "support": {
-        "issues": "https://github.com/yiisoft/app/issues?state=open",
-        "source": "https://github.com/yiisoft/app",
+        "issues": "https://github.com/crenspire/yii3-react-starter/issues",
+        "source": "https://github.com/crenspire/yii3-react-starter",
         "forum": "https://www.yiiframework.com/forum/",
-        "wiki": "https://www.yiiframework.com/wiki/",
-        "irc": "ircs://irc.libera.chat:6697/yii",
         "chat": "https://t.me/yii3en"
     },
-    "funding": [
-        {
-            "type": "opencollective",
-            "url": "https://opencollective.com/yiisoft"
-        },
-        {
-            "type": "github",
-            "url": "https://github.com/sponsors/yiisoft"
-        }
-    ],
     "scripts": {
         "serve": [
             "Composer\\Config::disableProcessTimeout",
             "@php ./yii serve"
         ],
-        "test": "codecept run"
+        "test": "codecept run",
+        "cs-check": "php-cs-fixer fix --config=.php-cs-fixer.php --dry-run --diff",
+        "cs-fix": "php-cs-fixer fix --config=.php-cs-fixer.php",
+        "psalm": "psalm --no-cache",
+        "rector": "rector process",
+        "dependency-analyser": "composer-dependency-analyser --config=composer-dependency-analyser.php"
     },
     "require": {
         "php": "^8.2",
         "ext-filter": "*",
-        "crenspire/yii3-inertia": "^1.0",
+        "crenspire/yii3-inertia": "^2.0",
         "httpsoft/http-message": "^1.1.6",
         "psr/container": "^2.0.2",
         "psr/http-factory": "^1.1",
         "psr/http-message": "^2.0",
         "psr/http-server-handler": "^1.0.2",
+        "psr/http-server-middleware": "^1.0.2",
         "psr/log": "^3.0.2",
         "symfony/console": "^7.3.2",
         "yiisoft/aliases": "^3.1",
-        "yiisoft/assets": "^5.1.1",
         "yiisoft/config": "^1.6",
         "yiisoft/csrf": "^2.2.2",
         "yiisoft/data-response": "^2.1.1",
@@ -61,23 +58,23 @@
         "yiisoft/router": "^4",
         "yiisoft/router-fastroute": "^4.0.1",
         "yiisoft/session": "^3.0",
-        "yiisoft/view": "^12.2.1",
+        "yiisoft/validator": "^2.6",
         "yiisoft/yii-console": "^2.3",
         "yiisoft/yii-http": "^1.0.4",
         "yiisoft/yii-runner-console": "^2.2",
-        "yiisoft/yii-runner-http": "^3.2",
-        "yiisoft/yii-view-renderer": "^7.3"
+        "yiisoft/yii-runner-http": "^3.2"
     },
     "require-dev": {
+        "ext-session": "*",
         "codeception/c3": "^2.9",
         "codeception/codeception": "^5.3.2",
         "codeception/module-asserts": "^3.2",
         "codeception/module-cli": "^2.0.1",
         "codeception/module-phpbrowser": "^3.0.1",
         "friendsofphp/php-cs-fixer": "^3.86.0",
-        "phpunit/phpunit": "^11.5.34",
+        "phpunit/phpunit": "^11.5.56",
         "rector/rector": "^2.1.4",
-        "roave/infection-static-analysis-plugin": "^1.39",
+        "roave/infection-static-analysis-plugin": "^1.40",
         "roave/security-advisories": "dev-latest",
         "shipmonk/composer-dependency-analyser": "^1.8.3",
         "vimeo/psalm": "^6.13.1"
@@ -103,6 +100,9 @@
             "infection/extension-installer": true,
             "codeception/c3": true,
             "composer/installers": true
+        },
+        "platform": {
+            "php": "8.2.29"
         }
     }
 }

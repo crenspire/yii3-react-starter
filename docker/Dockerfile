@@ -1,5 +1,17 @@
 FROM composer/composer:2-bin AS composer
 
+#
+# Frontend build
+#
+
+FROM node:22-bookworm-slim AS assets
+WORKDIR /app
+COPY package.json package-lock.json ./
+RUN --mount=type=cache,target=/root/.npm npm ci
+COPY vite.config.js ./
+COPY assets ./assets
+RUN npm run build
+
 FROM dunglas/frankenphp:1-php8.2-bookworm AS base
 
 RUN apt update && apt -y install \
@@ -50,7 +62,8 @@ USER ${USER_NAME}
 
 FROM base AS prod-builder
 COPY --from=composer /composer /usr/bin/composer
-COPY .. /app
+COPY . /app
+COPY --from=assets /app/public/dist /app/public/dist
 RUN --mount=type=cache,target=/tmp/cache \
     composer install --no-dev --no-progress --no-interaction --classmap-authoritative && \
     rm composer.lock composer.json
@@ -58,4 +71,10 @@ RUN --mount=type=cache,target=/tmp/cache \
 FROM base AS prod
 ENV APP_ENV=prod
 COPY --from=prod-builder --chown=www-data:www-data /app /app
+# Based on https://frankenphp.dev/docs/docker/#running-as-a-non-root-user
+RUN \
+    # Allow binding to ports 80 and 443 without root \
+    setcap CAP_NET_BIND_SERVICE=+eip /usr/local/bin/frankenphp; \
+    # Caddy stores certificates and its config here \
+    chown -R www-data:www-data /data/caddy /config/caddy
 USER www-data

@@ -33,3 +33,6 @@ public/dist/
 
 # Vite cache
 .vite/
+
+# Written by the Vite dev server
+public/hot

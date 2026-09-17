@@ -6,8 +6,16 @@
 !/config
 !/public
 !/src
-!autoload.php
+!/assets
 !yii
 !composer.json
 !composer.lock
+!package.json
+!package-lock.json
+!vite.config.js
 !.env*
+
+# Built and generated in the image, never copied from the host
+/public/dist
+/public/hot
+/config/.merge-plan.php
