@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./assets/react/src/*"]
+    }
+  },
+  "include": ["assets/react/src"]
+}

@@ -2,8 +2,10 @@
 
 declare(strict_types=1);
 
+use App\Auth\ShareAuthMiddleware;
 use App\Handler\NotFound\NotFoundHandler;
 use Crenspire\Inertia\Middleware\InertiaMiddleware;
+use Crenspire\Inertia\Middleware\XsrfTokenMiddleware;
 use Yiisoft\Csrf\CsrfTokenMiddleware;
 use Yiisoft\DataResponse\Middleware\FormatDataResponse;
 use Yiisoft\Definitions\DynamicReference;
@@ -30,8 +32,10 @@ return [
                     [
                         ErrorCatcher::class,
                         SessionMiddleware::class,
+                        XsrfTokenMiddleware::class,
                         CsrfTokenMiddleware::class,
                         InertiaMiddleware::class,
+                        ShareAuthMiddleware::class,
                         FormatDataResponse::class,
                         RequestCatcherMiddleware::class,
                         Router::class,

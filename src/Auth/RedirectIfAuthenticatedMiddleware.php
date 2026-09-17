@@ -1,0 +1,31 @@
+<?php
+
+declare(strict_types=1);
+
+namespace App\Auth;
+
+use Crenspire\Inertia\Inertia;
+use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\ServerRequestInterface;
+use Psr\Http\Server\MiddlewareInterface;
+use Psr\Http\Server\RequestHandlerInterface;
+
+/**
+ * Sends signed-in users from guest pages, such as the login page, to the admin area.
+ */
+final readonly class RedirectIfAuthenticatedMiddleware implements MiddlewareInterface
+{
+    public function __construct(
+        private AuthSession $auth,
+        private Inertia $inertia,
+    ) {}
+
+    public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
+    {
+        if ($this->auth->user() !== null) {
+            return $this->inertia->redirect('/admin');
+        }
+
+        return $handler->handle($request);
+    }
+}

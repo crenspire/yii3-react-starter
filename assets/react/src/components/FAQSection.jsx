@@ -1,4 +1,3 @@
-import React from 'react';
 import {
   Accordion,
   AccordionContent,
@@ -16,8 +15,8 @@ export default function FAQSection({ faqs = [] }) {
       </div>
       <div className="mx-auto max-w-3xl">
         <Accordion type="single" collapsible className="w-full">
-          {Array.isArray(faqs) && faqs.map((faq, index) => (
-            <AccordionItem key={index} value={`item-${index}`}>
+          {faqs.map((faq) => (
+            <AccordionItem key={faq.question} value={faq.question}>
               <AccordionTrigger className="text-left">
                 {faq.question}
               </AccordionTrigger>

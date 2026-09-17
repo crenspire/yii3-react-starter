@@ -10,9 +10,11 @@ final class HomePageCest
 {
     public function base(WebTester $I): void
     {
-        $I->wantTo('home page works.');
+        $I->wantTo('see the home page rendered by Inertia.');
         $I->amOnPage('/');
-        $I->expectTo('see page home.');
-        $I->see('Hello!');
+        $I->seeResponseCodeIs(200);
+        $I->seeElement('#app');
+        $I->seeInSource('"component":"Home"');
+        $I->seeElement('script[type="module"]');
     }
 }

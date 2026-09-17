@@ -4,114 +4,138 @@ declare(strict_types=1);
 
 namespace App\Controller\HomePage;
 
-use Crenspire\Inertia\Action\InertiaAction;
+use Crenspire\Inertia\Inertia;
 use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\ServerRequestInterface;
 
-final class Action extends InertiaAction
+final readonly class Action
 {
-    public function __invoke(): ResponseInterface
+    public function __construct(
+        private Inertia $inertia,
+    ) {}
+
+    public function __invoke(ServerRequestInterface $request): ResponseInterface
     {
-        return $this->render('Home', [
+        return $this->inertia->render($request, 'Home', [
             'hero' => [
-                'techStack' => 'Using PHP 8.2+, Yii3, Inertia.js 2.0 and Tailwind CSS 4+',
+                'techStack' => 'Using PHP 8.2+, Yii3, Inertia.js 3, React 19 and Tailwind CSS 4',
                 'title' => 'Yii3 - Modern',
                 'titleHighlight' => 'Starter Kit',
-                'subtitle' => 'Ship faster production-ready applications 10x faster with starter kit powered by Yii3, Inertia.js, and React.',
-                'ctaPrimary' => 'View Demo',
-                'ctaSecondary' => 'Github',
-                'trustedBy' => 'Trusted by developers worldwide',
-                'logos' => ['Yii', 'Inertia', 'React', 'Vite'],
+                'subtitle' => 'Build single-page apps with React while keeping routing, controllers and validation in Yii3.',
+                'ctaPrimary' => 'Get Started',
+                'ctaSecondary' => 'GitHub',
+                'builtWith' => 'Built with',
+                'logos' => ['Yii', 'Inertia', 'React', 'Vite', 'Tailwind'],
             ],
             'features' => [
                 [
-                    'title' => '10x Dev Experience',
-                    'description' => 'Ship faster with opinionated PHP CS Fixer, maximum Psalm level, and Rector for enhanced code quality and developer productivity.',
+                    'title' => 'Code Quality Tooling',
+                    'description' => 'Psalm at level 1, PHP CS Fixer with PER-CS 2.0, Rector and Composer Dependency Analyser, all preconfigured.',
                     'icon' => 'rocket',
                 ],
                 [
-                    'title' => 'Production Docker Ready',
-                    'description' => 'Optimized Docker images with Yii3 and optimized setup for lightning-fast development and deployment.',
+                    'title' => 'Docker Ready',
+                    'description' => 'FrankenPHP images for development, testing and production, plus a Docker Swarm stack for zero-downtime deploys.',
                     'icon' => 'docker',
                 ],
                 [
-                    'title' => 'Advanced Authentication',
-                    'description' => 'Complete authentication system with social login and role-based access control ready to implement.',
-                    'icon' => 'key',
-                ],
-                [
-                    'title' => 'Payment Ready',
-                    'description' => 'Payment integration ready for subscription billing and payment processing so you can focus on building your product.',
-                    'icon' => 'creditCard',
-                ],
-                [
-                    'title' => 'API Ready',
-                    'description' => 'RESTful API endpoints with authentication and comprehensive documentation structure ready to implement.',
-                    'icon' => 'globe',
+                    'title' => 'Inertia.js 3 + React 19',
+                    'description' => 'Server-side routing with client-side pages, partial reloads, deferred props, validation errors and flash data.',
+                    'icon' => 'layers',
                 ],
                 [
                     'title' => 'Customizable UI',
-                    'description' => 'Built with shadcn/ui components, making UI customization a breeze. Easily modify themes, styles, and components to match your brand.',
+                    'description' => 'shadcn/ui-style components on Tailwind CSS 4 with a dark mode toggle. Change the theme tokens in one CSS file.',
                     'icon' => 'palette',
                 ],
                 [
-                    'title' => 'AI Integration Ready',
-                    'description' => 'Pre-configured structure for LLM integrations. Build AI-powered features into your app with minimal setup.',
-                    'icon' => 'brain',
+                    'title' => 'Vite 8',
+                    'description' => 'Hot module replacement in development, hashed production builds, and automatic asset versioning from the manifest.',
+                    'icon' => 'zap',
                 ],
                 [
-                    'title' => 'Admin Panel Ready',
-                    'description' => 'Structure ready for beautiful admin panel with CRUD operations, charts, and detailed analytics integration.',
+                    'title' => 'CSRF Protection',
+                    'description' => 'Yii CSRF middleware wired to the Inertia client through the XSRF-TOKEN cookie, so forms work out of the box.',
+                    'icon' => 'shield',
+                ],
+                [
+                    'title' => 'Admin Dashboard',
+                    'description' => 'A shadcn/ui admin with a collapsible sidebar, charts, data tables, forms and toasts, wired to Yii3 actions.',
                     'icon' => 'barChart',
                 ],
                 [
-                    'title' => 'Evolving Features',
-                    'description' => 'This is just the beginning. Regular updates bring new features, integrations, and improvements to supercharge your development.',
-                    'icon' => 'sparkles',
+                    'title' => 'Tested',
+                    'description' => 'Codeception unit, functional, console and browser suites that run locally or in Docker.',
+                    'icon' => 'flask',
+                ],
+            ],
+            'roadmap' => [
+                [
+                    'title' => 'Authentication',
+                    'description' => 'Real user accounts with password hashing, sign up, social login and roles. The login page uses a demo session for now.',
+                    'icon' => 'key',
+                ],
+                [
+                    'title' => 'Payments',
+                    'description' => 'Subscription billing and payment processing.',
+                    'icon' => 'creditCard',
+                ],
+                [
+                    'title' => 'REST API',
+                    'description' => 'Authenticated API endpoints with generated documentation.',
+                    'icon' => 'globe',
+                ],
+                [
+                    'title' => 'AI Integration',
+                    'description' => 'A structure for building LLM-powered features.',
+                    'icon' => 'brain',
+                ],
+                [
+                    'title' => 'Database Integration',
+                    'description' => 'Yii DB with migrations, so admin data is stored in a database instead of the session.',
+                    'icon' => 'layers',
                 ],
             ],
             'openSource' => [
                 'title' => 'Proudly Open Source 😊',
                 'description' => 'Yii3 Starter Kit is and will always be open source.',
                 'includedTitle' => "What's included?",
-                'includedSubtitle' => 'Perfect for growing businesses.',
+                'includedSubtitle' => 'Everything you need to start building today.',
                 'includedItems' => [
-                    'Production-ready Docker setup',
-                    'AI Integrations structure',
-                    'API endpoints structure',
-                    'Advanced authentication system',
-                    'Payment integration ready',
-                    'Comprehensive documentation',
+                    'Yii3 backend with Inertia.js 3 and React 19',
+                    'Tailwind CSS 4 and shadcn/ui-style components',
+                    'Docker setup for development, testing and production',
+                    'Admin dashboard and login page built on shadcn/ui blocks',
+                    'Psalm, PHP CS Fixer and Rector configuration',
+                    'Codeception test suites',
                 ],
                 'price' => '$0',
                 'priceSubtitle' => 'Free Forever',
                 'supportTitle' => 'Want to support the development?',
-                'githubUrl' => 'https://github.com',
             ],
             'faqs' => [
                 [
                     'question' => 'Is Yii3 Starter Kit really free?',
-                    'answer' => 'Yes! Yii3 Starter Kit is completely free and open source under the MIT license. You can use it for personal or commercial projects without any restrictions. Feel free to star the repo for showing your interest.',
+                    'answer' => 'Yes. It is free and open source, and you can use it for personal or commercial projects. Star the repository to show your interest.',
                 ],
                 [
                     'question' => 'How can I contribute?',
-                    'answer' => 'Contributions are welcome! You can contribute by reporting bugs, suggesting features, submitting pull requests, or improving documentation. Check out our GitHub repository for more information.',
+                    'answer' => 'Report bugs, suggest features, open pull requests or improve the documentation on GitHub.',
                 ],
                 [
-                    'question' => 'Why should I sponsor?',
-                    'answer' => 'Sponsoring helps maintain and improve the project. Your support enables us to dedicate more time to development, add new features, fix bugs faster, and provide better documentation.',
+                    'question' => 'How do I add a page?',
+                    'answer' => 'Create a React component in assets/react/src/pages, an action that calls $inertia->render() with the component name, and a route in config/common/routes.php.',
                 ],
             ],
             'cta' => [
                 'title' => 'Ready to ship faster?',
                 'subtitle' => "You're already blazing fast with Yii3. Yii3 Starter Kit is about to make your shipping speed supersonic. 🚀",
                 'buttonText' => 'View on GitHub',
-                'githubUrl' => 'https://github.com',
                 'commands' => [
-                    'git clone https://github.com/your-org/yii3-starter-kit',
-                    'cd yii3-starter-kit && composer install',
-                    'npm install',
+                    'git clone https://github.com/crenspire/yii3-react-starter.git',
+                    'cd yii3-react-starter && composer install && npm install',
                     'npm run dev',
-                    'composer serve',
+                    'APP_ENV=dev composer serve',
                 ],
             ],
         ]);
